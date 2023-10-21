@@ -1,0 +1,8 @@
+C:\Users\angel\RiderProjects\TestProject1\TestProject1\obj\Debug\TestProject1.csprojAssemblyReference.cache
+C:\Users\angel\RiderProjects\TestProject1\TestProject1\bin\Debug\TestProject1.dll
+C:\Users\angel\RiderProjects\TestProject1\TestProject1\bin\Debug\TestProject1.pdb
+C:\Users\angel\RiderProjects\TestProject1\TestProject1\bin\Debug\nunit.framework.dll
+C:\Users\angel\RiderProjects\TestProject1\TestProject1\bin\Debug\nunit.framework.xml
+C:\Users\angel\RiderProjects\TestProject1\TestProject1\obj\Debug\TestProject1.csproj.CopyComplete
+C:\Users\angel\RiderProjects\TestProject1\TestProject1\obj\Debug\TestProject1.dll
+C:\Users\angel\RiderProjects\TestProject1\TestProject1\obj\Debug\TestProject1.pdb
