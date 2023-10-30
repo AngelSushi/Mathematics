@@ -7,7 +7,6 @@ namespace Maths_Matrices.Tests
 {
     public class MatrixInt
     {
-
         private int _lines;
 
         public int Lines
@@ -34,24 +33,18 @@ namespace Maths_Matrices.Tests
 
         public int this[int i, int i1]
         {
-            get
-            {
-                return Matrix[i, i1]; 
-            }
-            set
-            {
-                Matrix[i, i1] = value;
-            }
-        } 
+            get { return Matrix[i, i1]; }
+            set { Matrix[i, i1] = value; }
+        }
 
-        public MatrixInt(int lines,int columns)
+        public MatrixInt(int lines, int columns)
         {
             Matrix = new int[lines, columns];
             Lines = lines;
             Columns = columns;
         }
 
-        public MatrixInt(int [,] matrix)
+        public MatrixInt(int[,] matrix)
         {
             Matrix = matrix;
             Lines = matrix.GetLength(0);
@@ -69,7 +62,7 @@ namespace Maths_Matrices.Tests
                     Matrix[i, j] = copy.Matrix[i, j];
                 }
             }
-            
+
             Lines = copy.Lines;
             Columns = copy.Columns;
         }
@@ -83,7 +76,7 @@ namespace Maths_Matrices.Tests
         public static MatrixInt Identity(int size)
         {
             MatrixInt matrixIdentity = new MatrixInt(size, size);
-            
+
             int identityIndex = 0;
             for (int i = 0; i < size; i++)
             {
@@ -132,15 +125,15 @@ namespace Maths_Matrices.Tests
 
             return true;
         }
-        
-        
+
+
         private bool IsIdentityDirty()
         {
             if (Lines != Columns)
             {
                 return false;
             }
-            
+
             int[] identitiesIndex = new int[Matrix.GetLength(0)];
             int indexEmpty = 0;
 
@@ -177,9 +170,8 @@ namespace Maths_Matrices.Tests
             }
 
             return true;
-    
         }
-       
+
 
         public void Multiply(int factor)
         {
@@ -198,8 +190,8 @@ namespace Maths_Matrices.Tests
             {
                 throw new MatrixSumException();
             }
-            
-            
+
+
             /*for (int i = 0; i < factor.Matrix.GetLength(0); i++)
             {
                 for (int j = 0; j < factor.Matrix.GetLength(1); j++)
@@ -209,13 +201,12 @@ namespace Maths_Matrices.Tests
             }
             */
 
-       
 
             return this;
         }
-        
-        
-        public static MatrixInt Multiply(MatrixInt matrixClass,int factor)
+
+
+        public static MatrixInt Multiply(MatrixInt matrixClass, int factor)
         {
             MatrixInt newMatrix = new MatrixInt(matrixClass);
 
@@ -236,7 +227,7 @@ namespace Maths_Matrices.Tests
             {
                 throw new MatrixSumException();
             }
-            
+
             for (int i = 0; i < Matrix.GetLength(0); i++)
             {
                 for (int j = 0; j < Matrix.GetLength(1); j++)
@@ -252,7 +243,7 @@ namespace Maths_Matrices.Tests
             {
                 throw new MatrixSumException();
             }
-            
+
             MatrixInt newMatrix = new MatrixInt(a);
 
             for (int i = 0; i < a.Matrix.GetLength(0); i++)
@@ -276,7 +267,7 @@ namespace Maths_Matrices.Tests
             {
                 throw new MatrixSumException();
             }
-            
+
             MatrixInt newMatrix = new MatrixInt(a);
 
             for (int i = 0; i < a.Matrix.GetLength(0); i++)
@@ -289,8 +280,8 @@ namespace Maths_Matrices.Tests
 
             return newMatrix;
         }
-        
-        
+
+
         public static MatrixInt operator -(MatrixInt a)
         {
             MatrixInt newMatrix = new MatrixInt(a);
@@ -311,64 +302,62 @@ namespace Maths_Matrices.Tests
             throw new NotImplementedException();
         }
 
-      /*  public static MatrixInt Transpose(MatrixInt a)
+        /*  public static MatrixInt Transpose(MatrixInt a)
+          {
+              return new MatrixInt();
+          }
+          */
+        public static MatrixInt GenerateAugmentedMatrix(MatrixInt mTransfo, MatrixInt mCol)
         {
-            return new MatrixInt();
+            MatrixInt augmentedMatrix = new MatrixInt(mTransfo.Lines, mTransfo.Columns + 1);
+
+            int index = 0;
+            for (int i = 0; i < augmentedMatrix.Lines; i++)
+            {
+                for (int j = 0; j < augmentedMatrix.Columns; j++)
+                {
+                    if (j < augmentedMatrix.Columns - 1)
+                    {
+                        augmentedMatrix[i, j] = mTransfo[i, j];
+                    }
+                    else
+                    {
+                        augmentedMatrix[i, j] =
+                            mCol[index, 0]; // Peut avoir plusieurs colonnes cas a gérer dans les prochains test
+                        index++;
+                    }
+                }
+            }
+
+
+            return augmentedMatrix;
         }
-        */
-      public static MatrixInt GenerateAugmentedMatrix(MatrixInt mTransfo, MatrixInt mCol)
-      {
-          MatrixInt augmentedMatrix = new MatrixInt(mTransfo.Lines, mTransfo.Columns + 1);
 
-          int index = 0;
-          for (int i = 0; i < augmentedMatrix.Lines; i++)
-          {
-              for (int j = 0; j < augmentedMatrix.Columns; j++)
-              {
-                  if (j < augmentedMatrix.Columns - 1)
-                  {
-                      augmentedMatrix[i, j] = mTransfo[i, j];
-                  }
-                  else
-                  {
-                      augmentedMatrix[i, j] = mCol[index, 0]; // Peut avoir plusieurs colonnes cas a gérer dans les prochains test
-                      index++;
-                  }
-                  
-              }
-          }
-          
+        public (MatrixInt a, MatrixInt b) Split(int split)
+        {
+            MatrixInt firstMatrix = new MatrixInt(Lines, (split + 1));
+            MatrixInt secondMatrix = new MatrixInt(Lines, Columns - (split + 1));
 
-          return augmentedMatrix;
-      }
+            for (int i = 0; i < firstMatrix.Lines; i++)
+            {
+                for (int j = 0; j < firstMatrix.Columns; j++)
+                {
+                    firstMatrix[i, j] = Matrix[i, j];
+                }
 
-      public (MatrixInt a, MatrixInt b) Split(int split)
-      {
-          MatrixInt firstMatrix = new MatrixInt(Lines, (split + 1));
-          MatrixInt secondMatrix = new MatrixInt(Lines, Columns - (split + 1));
+                for (int j = 0; j < secondMatrix.Columns; j++)
+                {
+                    secondMatrix[i, j] = Matrix[i, j + firstMatrix.Columns];
+                }
+            }
 
-          for (int i = 0; i < firstMatrix.Lines; i++)
-          {
-              for (int j = 0; j < firstMatrix.Columns; j++)
-              {
-                  firstMatrix[i, j] = Matrix[i, j];
-              }
 
-              for (int j = 0; j < secondMatrix.Columns; j++)
-              {
-                  secondMatrix[i, j] = Matrix[i, j + firstMatrix.Columns];
-              }
-          }
-          
-          
-          
-          return (firstMatrix, secondMatrix);
-      }
+            return (firstMatrix, secondMatrix);
+        }
     }
-    
+
     public class MatrixFloat
     {
-
         private int _lines;
 
         public int Lines
@@ -395,24 +384,18 @@ namespace Maths_Matrices.Tests
 
         public float this[int i, int i1]
         {
-            get
-            {
-                return Matrix[i, i1]; 
-            }
-            set
-            {
-                Matrix[i, i1] = value;
-            }
-        } 
+            get { return Matrix[i, i1]; }
+            set { Matrix[i, i1] = value; }
+        }
 
-        public MatrixFloat(int lines,int columns)
+        public MatrixFloat(int lines, int columns)
         {
             Matrix = new float[lines, columns];
             Lines = lines;
             Columns = columns;
         }
 
-        public MatrixFloat(float [,] matrix)
+        public MatrixFloat(float[,] matrix)
         {
             Matrix = matrix;
             Lines = matrix.GetLength(0);
@@ -430,7 +413,7 @@ namespace Maths_Matrices.Tests
                     Matrix[i, j] = copy.Matrix[i, j];
                 }
             }
-            
+
             Lines = copy.Lines;
             Columns = copy.Columns;
         }
@@ -444,7 +427,7 @@ namespace Maths_Matrices.Tests
         public static MatrixFloat Identity(int size)
         {
             MatrixFloat matrixIdentity = new MatrixFloat(size, size);
-            
+
             int identityIndex = 0;
             for (int i = 0; i < size; i++)
             {
@@ -493,54 +476,7 @@ namespace Maths_Matrices.Tests
 
             return true;
         }
-        
-        
-        private bool IsIdentityDirty()
-        {
-            if (Lines != Columns)
-            {
-                return false;
-            }
-            
-            int[] identitiesIndex = new int[Matrix.GetLength(0)];
-            int indexEmpty = 0;
 
-            for (int i = 0; i < Matrix.GetLength(0); i++)
-            {
-                for (int j = 0; j < Matrix.GetLength(1); j++)
-                {
-                    if (Matrix[i, j] == 1)
-                    {
-                        if (indexEmpty >= identitiesIndex.Length)
-                        {
-                            return false;
-                        }
-
-                        identitiesIndex[indexEmpty] = j;
-                        indexEmpty++;
-                    }
-                    else if (Matrix[i, j] != 0)
-                    {
-                        return false;
-                    }
-                }
-            }
-
-            for (int i = 0; i < identitiesIndex.Length; i++)
-            {
-                if (i > 0)
-                {
-                    if (identitiesIndex[i] - identitiesIndex[i - 1] != 1)
-                    {
-                        return false;
-                    }
-                }
-            }
-
-            return true;
-    
-        }
-       
 
         public void Multiply(int factor)
         {
@@ -559,8 +495,8 @@ namespace Maths_Matrices.Tests
             {
                 throw new MatrixSumException();
             }
-            
-            
+
+
             /*for (int i = 0; i < factor.Matrix.GetLength(0); i++)
             {
                 for (int j = 0; j < factor.Matrix.GetLength(1); j++)
@@ -570,13 +506,12 @@ namespace Maths_Matrices.Tests
             }
             */
 
-       
 
             return this;
         }
-        
-        
-        public static MatrixFloat Multiply(MatrixFloat matrixClass,int factor)
+
+
+        public static MatrixFloat Multiply(MatrixFloat matrixClass, int factor)
         {
             MatrixFloat newMatrix = new MatrixFloat(matrixClass);
 
@@ -597,7 +532,7 @@ namespace Maths_Matrices.Tests
             {
                 throw new MatrixSumException();
             }
-            
+
             for (int i = 0; i < Matrix.GetLength(0); i++)
             {
                 for (int j = 0; j < Matrix.GetLength(1); j++)
@@ -613,7 +548,7 @@ namespace Maths_Matrices.Tests
             {
                 throw new MatrixSumException();
             }
-            
+
             MatrixFloat newMatrix = new MatrixFloat(a);
 
             for (int i = 0; i < a.Matrix.GetLength(0); i++)
@@ -637,7 +572,7 @@ namespace Maths_Matrices.Tests
             {
                 throw new MatrixSumException();
             }
-            
+
             MatrixFloat newMatrix = new MatrixFloat(a);
 
             for (int i = 0; i < a.Matrix.GetLength(0); i++)
@@ -650,8 +585,8 @@ namespace Maths_Matrices.Tests
 
             return newMatrix;
         }
-        
-        
+
+
         public static MatrixFloat operator -(MatrixFloat a)
         {
             MatrixFloat newMatrix = new MatrixFloat(a);
@@ -672,59 +607,58 @@ namespace Maths_Matrices.Tests
             throw new NotImplementedException();
         }
 
-      /*  public static MatrixInt Transpose(MatrixInt a)
+        /*  public static MatrixInt Transpose(MatrixInt a)
+          {
+              return new MatrixInt();
+          }
+          */
+        public static MatrixFloat GenerateAugmentedMatrix(MatrixFloat mTransfo, MatrixFloat mCol)
         {
-            return new MatrixInt();
+            MatrixFloat augmentedMatrix = new MatrixFloat(mTransfo.Lines, mTransfo.Columns + 1);
+
+            int index = 0;
+            for (int i = 0; i < augmentedMatrix.Lines; i++)
+            {
+                for (int j = 0; j < augmentedMatrix.Columns; j++)
+                {
+                    if (j < augmentedMatrix.Columns - 1)
+                    {
+                        augmentedMatrix[i, j] = mTransfo[i, j];
+                    }
+                    else
+                    {
+                        augmentedMatrix[i, j] =
+                            mCol[index, 0]; // Peut avoir plusieurs colonnes cas a gérer dans les prochains test
+                        index++;
+                    }
+                }
+            }
+
+
+            return augmentedMatrix;
         }
-        */
-      public static MatrixFloat GenerateAugmentedMatrix(MatrixFloat mTransfo, MatrixFloat mCol)
-      {
-          MatrixFloat augmentedMatrix = new MatrixFloat(mTransfo.Lines, mTransfo.Columns + 1);
 
-          int index = 0;
-          for (int i = 0; i < augmentedMatrix.Lines; i++)
-          {
-              for (int j = 0; j < augmentedMatrix.Columns; j++)
-              {
-                  if (j < augmentedMatrix.Columns - 1)
-                  {
-                      augmentedMatrix[i, j] = mTransfo[i, j];
-                  }
-                  else
-                  {
-                      augmentedMatrix[i, j] = mCol[index, 0]; // Peut avoir plusieurs colonnes cas a gérer dans les prochains test
-                      index++;
-                  }
-                  
-              }
-          }
-          
+        public (MatrixFloat a, MatrixFloat b) Split(int split)
+        {
+            MatrixFloat firstMatrix = new MatrixFloat(Lines, (split + 1));
+            MatrixFloat secondMatrix = new MatrixFloat(Lines, Columns - (split + 1));
 
-          return augmentedMatrix;
-      }
+            for (int i = 0; i < firstMatrix.Lines; i++)
+            {
+                for (int j = 0; j < firstMatrix.Columns; j++)
+                {
+                    firstMatrix[i, j] = Matrix[i, j];
+                }
 
-      public (MatrixFloat a, MatrixFloat b) Split(int split)
-      {
-          MatrixFloat firstMatrix = new MatrixFloat(Lines, (split + 1));
-          MatrixFloat secondMatrix = new MatrixFloat(Lines, Columns - (split + 1));
+                for (int j = 0; j < secondMatrix.Columns; j++)
+                {
+                    secondMatrix[i, j] = Matrix[i, j + firstMatrix.Columns];
+                }
+            }
 
-          for (int i = 0; i < firstMatrix.Lines; i++)
-          {
-              for (int j = 0; j < firstMatrix.Columns; j++)
-              {
-                  firstMatrix[i, j] = Matrix[i, j];
-              }
 
-              for (int j = 0; j < secondMatrix.Columns; j++)
-              {
-                  secondMatrix[i, j] = Matrix[i, j + firstMatrix.Columns];
-              }
-          }
-          
-          
-          
-          return (firstMatrix, secondMatrix);
-      }
+            return (firstMatrix, secondMatrix);
+        }
     }
 
     public class MatrixRowReductionAlgorithm
@@ -733,46 +667,51 @@ namespace Maths_Matrices.Tests
         {
             MatrixFloat reducMatrix = MatrixFloat.GenerateAugmentedMatrix(m1, m2);
 
-            
+
             for (int i = 0; i < m1.Lines; i++)
             {
-                for (int j = 0; j < m1.Columns; j++)
-                { 
-                    (int lineIndex,float k) = FindHigherK(m1,i,j);
+                for (int j = i; j < m1.Columns; j++)
+                {
+                    (int lineIndex, float k) = FindHigherK(reducMatrix, i, j);
 
                     if (AllIsZero(reducMatrix, i))
                     {
                         continue;
                     }
-                    
+
                     if (lineIndex != i)
-                    { 
-                        MatrixElementaryOperations.SwapLines(reducMatrix,lineIndex,i);
+                    {
+                        MatrixElementaryOperations.SwapLines(reducMatrix, lineIndex, i);
                     }
 
-                    MatrixElementaryOperations.MultiplyLine(reducMatrix,i,1/reducMatrix[i,j]);
+                    MatrixElementaryOperations.MultiplyLine(reducMatrix, i, 1 / reducMatrix[i, j]);
 
-                    for (int l = 0; l < m1.Lines; l++)
+                    for (int l = 0; l < reducMatrix.Lines; l++)
                     {
                         if (l != i)
                         {
-                            //Console.WriteLine(l);
-                           
-                            MatrixElementaryOperations.AddLineToAnother(reducMatrix,i,l,reducMatrix[i,j]);
+                            float targetValueLine = reducMatrix[l, i];
+                            
+                            for (int r = 0; r < reducMatrix.Columns; r++)
+                            {
+                                float factor = reducMatrix[j, r];
+                                reducMatrix[l, r] -= targetValueLine * factor;
+                            }
                         }
                     }
-                    //Console.WriteLine("---------");
+
+                    break;
                 }
             }
-
-            return (null, null);
+            
+            return reducMatrix.Split(2);
         }
 
-        private static (int,float) FindHigherK(MatrixFloat matrixRef,int line, int column)
+        private static (int, float) FindHigherK(MatrixFloat matrixRef, int line, int column)
         {
-            float highestValue = matrixRef[line,column];
+            float highestValue = matrixRef[line, column];
             int lineIndex = 0;
-            
+
             for (int k = 0; k < matrixRef.Lines; k++)
             {
                 if (k >= line)
@@ -785,7 +724,7 @@ namespace Maths_Matrices.Tests
                 }
             }
 
-            return (lineIndex,highestValue);
+            return (lineIndex, highestValue);
         }
 
         private static bool AllIsZero(MatrixFloat matrixRef, int line)
@@ -801,7 +740,7 @@ namespace Maths_Matrices.Tests
             return true;
         }
     }
-    
+
     public class MatrixElementaryOperations
     {
         public static void SwapLines(MatrixInt matrixRef, int line1, int line2)
@@ -813,9 +752,8 @@ namespace Maths_Matrices.Tests
                 matrixRef[line1, i] = newMatrix[line2, i];
                 matrixRef[line2, i] = newMatrix[line1, i];
             }
-
         }
-        
+
         public static void SwapLines(MatrixFloat matrixRef, int line1, int line2)
         {
             MatrixFloat newMatrix = new MatrixFloat(matrixRef);
@@ -825,9 +763,8 @@ namespace Maths_Matrices.Tests
                 matrixRef[line1, i] = newMatrix[line2, i];
                 matrixRef[line2, i] = newMatrix[line1, i];
             }
-
         }
-        
+
 
         public static void SwapColumns(MatrixInt matrixRef, int column1, int column2)
         {
@@ -846,20 +783,20 @@ namespace Maths_Matrices.Tests
             {
                 throw new MatrixScalarZeroException();
             }
-            
+
             for (int i = 0; i < matrixRef.Columns; i++)
             {
                 matrixRef[line, i] *= factor;
             }
         }
-        
+
         public static void MultiplyLine(MatrixInt matrixRef, int line, int factor)
         {
             if (factor == 0)
             {
                 throw new MatrixScalarZeroException();
             }
-            
+
             for (int i = 0; i < matrixRef.Columns; i++)
             {
                 matrixRef[line, i] *= factor;
@@ -886,12 +823,12 @@ namespace Maths_Matrices.Tests
                 matrixRef[lineResult, i] += matrixRef[lineToAdd, i] * factor;
             }
         }
-        
+
         public static void AddLineToAnother(MatrixFloat matrixRef, int lineToAdd, int lineResult, float factor)
         {
             for (int i = 0; i < matrixRef.Columns; i++)
             {
-                matrixRef[lineResult, i] = matrixRef[lineResult, i] - matrixRef[lineToAdd, lineResult] * factor;
+                matrixRef[lineResult, i] -= matrixRef[lineToAdd, i] * factor;
             }
         }
 
@@ -902,16 +839,14 @@ namespace Maths_Matrices.Tests
                 matrixRef[i, columnResult] = matrixRef[i, columnToAdd] * factor + matrixRef[i, columnResult];
             }
         }
-        
     }
-    
+
     [TestFixture]
     public class Tests01_NewMatrices
     {
         [Test]
         public void TestNewEmptyMatrices()
         {
-            
             MatrixInt m1 = new MatrixInt(3, 2);
             Assert.AreEqual(new[,]
             {
@@ -958,7 +893,6 @@ namespace Maths_Matrices.Tests
             Assert.AreEqual(7, m[2, 0]);
             Assert.AreEqual(8, m[2, 1]);
             Assert.AreEqual(9, m[2, 2]);
-            
         }
     }
 }
