@@ -2,10 +2,13 @@
 	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=5a94f5a4_002D34a8_002D4797_002Dab8d_002Daf502a07e456/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" Name="TestApplyRowReduction_CourseExample" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;&#xD;
   &lt;TestAncestor&gt;&#xD;
     &lt;TestId&gt;NUnit3x::901372C0-0399-4C17-8B52-AF0DE546430A::.NETFramework,Version=v4.7.2::Maths_Matrices.Tests.Tests10_RowReduction&lt;/TestId&gt;&#xD;
+    &lt;TestId&gt;NUnit3x::901372C0-0399-4C17-8B52-AF0DE546430A::.NETFramework,Version=v4.7.2::Maths_Matrices.Tests.Tests11_InvertMatricesUsingRowReduction.TestInvertMatrixInstance&lt;/TestId&gt;&#xD;
   &lt;/TestAncestor&gt;&#xD;
 &lt;/SessionState&gt;</s:String>
 	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=77273e11_002D403d_002D4783_002D9ec4_002D0134c1e8a88e/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" IsActive="True" Name="Tests10_RowReduction" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;&#xD;
   &lt;TestAncestor&gt;&#xD;
     &lt;TestId&gt;NUnit3x::901372C0-0399-4C17-8B52-AF0DE546430A::.NETFramework,Version=v4.7.2::Maths_Matrices.Tests.Tests10_RowReduction&lt;/TestId&gt;&#xD;
+    &lt;TestId&gt;NUnit3x::901372C0-0399-4C17-8B52-AF0DE546430A::.NETFramework,Version=v4.7.2::Maths_Matrices.Tests.Tests11_InvertMatricesUsingRowReduction.TestInvertMatrixInstance&lt;/TestId&gt;&#xD;
+    &lt;TestId&gt;NUnit3x::901372C0-0399-4C17-8B52-AF0DE546430A::.NETFramework,Version=v4.7.2::Maths_Matrices.Tests.Tests11_InvertMatricesUsingRowReduction.TestInvertImpossibleMatrix&lt;/TestId&gt;&#xD;
   &lt;/TestAncestor&gt;&#xD;
 &lt;/SessionState&gt;</s:String></wpf:ResourceDictionary>

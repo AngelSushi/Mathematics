@@ -614,22 +614,19 @@ namespace Maths_Matrices.Tests
           */
         public static MatrixFloat GenerateAugmentedMatrix(MatrixFloat mTransfo, MatrixFloat mCol)
         {
-            MatrixFloat augmentedMatrix = new MatrixFloat(mTransfo.Lines, mTransfo.Columns + 1);
+            MatrixFloat augmentedMatrix = new MatrixFloat(mTransfo.Lines, mTransfo.Columns + mCol.Columns);
 
-            int index = 0;
             for (int i = 0; i < augmentedMatrix.Lines; i++)
             {
                 for (int j = 0; j < augmentedMatrix.Columns; j++)
                 {
-                    if (j < augmentedMatrix.Columns - 1)
+                    if (j < augmentedMatrix.Columns - mCol.Columns)
                     {
                         augmentedMatrix[i, j] = mTransfo[i, j];
                     }
                     else
                     {
-                        augmentedMatrix[i, j] =
-                            mCol[index, 0]; // Peut avoir plusieurs colonnes cas a gérer dans les prochains test
-                        index++;
+                        augmentedMatrix[i, j] = mCol[i, j - mTransfo.Columns]; // Peut avoir plusieurs colonnes cas a gérer dans les prochains test
                     }
                 }
             }
@@ -659,14 +656,47 @@ namespace Maths_Matrices.Tests
 
             return (firstMatrix, secondMatrix);
         }
+
+        public MatrixFloat InvertByRowReduction()
+        {
+            MatrixFloat identity = Identity(Columns);
+            MatrixFloat augmentedMatrix = null;
+            bool isReversible = false;
+            
+            (identity,augmentedMatrix,isReversible) = MatrixRowReductionAlgorithm.Apply(this, identity);
+
+            if (!isReversible)
+            {
+                throw new MatrixInvertException();
+            }
+            
+            return augmentedMatrix;
+        }
+        
+        public static MatrixFloat InvertByRowReduction(MatrixFloat matrix)
+        {
+            MatrixFloat identity = Identity(matrix.Columns);
+            MatrixFloat augmentedMatrix = null;
+            bool isReversible = false;
+            
+            (identity,augmentedMatrix,isReversible) = MatrixRowReductionAlgorithm.Apply(matrix, identity);
+
+            if (!isReversible)
+            {
+                throw new MatrixInvertException();
+            }
+            
+            return augmentedMatrix;
+        }
     }
 
     public class MatrixRowReductionAlgorithm
     {
-        public static (MatrixFloat m1, MatrixFloat m2) Apply(MatrixFloat m1, MatrixFloat m2)
+        public static (MatrixFloat m1, MatrixFloat m2,bool isReversible) Apply(MatrixFloat m1, MatrixFloat m2)
         {
             MatrixFloat reducMatrix = MatrixFloat.GenerateAugmentedMatrix(m1, m2);
 
+            bool isReversible = true;
 
             for (int i = 0; i < m1.Lines; i++)
             {
@@ -679,6 +709,7 @@ namespace Maths_Matrices.Tests
                         continue;
                     }
 
+                    isReversible = false;
                     if (lineIndex != i)
                     {
                         MatrixElementaryOperations.SwapLines(reducMatrix, lineIndex, i);
@@ -704,7 +735,7 @@ namespace Maths_Matrices.Tests
                 }
             }
             
-            return reducMatrix.Split(2);
+            return (reducMatrix.Split(2).a,reducMatrix.Split(2).b,isReversible);
         }
 
         private static (int, float) FindHigherK(MatrixFloat matrixRef, int line, int column)

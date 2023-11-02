@@ -6,3 +6,12 @@ C:\Users\angel\RiderProjects\TestProject1\TestProject1\bin\Debug\nunit.framework
 C:\Users\angel\RiderProjects\TestProject1\TestProject1\obj\Debug\TestProject1.csproj.CopyComplete
 C:\Users\angel\RiderProjects\TestProject1\TestProject1\obj\Debug\TestProject1.dll
 C:\Users\angel\RiderProjects\TestProject1\TestProject1\obj\Debug\TestProject1.pdb
+E:\travail\Cours\Maths\A4\Mathematics\TestProject1\bin\Debug\TestProject1.dll
+E:\travail\Cours\Maths\A4\Mathematics\TestProject1\bin\Debug\TestProject1.pdb
+E:\travail\Cours\Maths\A4\Mathematics\TestProject1\bin\Debug\nunit.framework.dll
+E:\travail\Cours\Maths\A4\Mathematics\TestProject1\bin\Debug\nunit.framework.xml
+E:\travail\Cours\Maths\A4\Mathematics\TestProject1\obj\Debug\TestProject1.csprojAssemblyReference.cache
+E:\travail\Cours\Maths\A4\Mathematics\TestProject1\obj\Debug\TestProject1.csproj.CoreCompileInputs.cache
+E:\travail\Cours\Maths\A4\Mathematics\TestProject1\obj\Debug\TestProject1.csproj.CopyComplete
+E:\travail\Cours\Maths\A4\Mathematics\TestProject1\obj\Debug\TestProject1.dll
+E:\travail\Cours\Maths\A4\Mathematics\TestProject1\obj\Debug\TestProject1.pdb
