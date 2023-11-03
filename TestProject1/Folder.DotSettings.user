@@ -1,0 +1,23 @@
+﻿<wpf:ResourceDictionary xml:space="preserve" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:s="clr-namespace:System;assembly=mscorlib" xmlns:ss="urn:shemas-jetbrains-com:settings-storage-xaml" xmlns:wpf="http://schemas.microsoft.com/winfx/2006/xaml/presentation">
+	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=24d010d9_002Dc12a_002D44b7_002D8290_002Db4b2fb217a6c/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" Name="TestGetSubMatricesInstance" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;&#xD;
+  &lt;TestAncestor&gt;&#xD;
+    &lt;TestId&gt;NUnit3x::901372C0-0399-4C17-8B52-AF0DE546430A::.NETFramework,Version=v4.7.2::Maths_Matrices.Tests.Tests12_SubMatrices.TestGetSubMatricesInstance&lt;/TestId&gt;&#xD;
+    &lt;TestId&gt;NUnit3x::901372C0-0399-4C17-8B52-AF0DE546430A::.NETFramework,Version=v4.7.2::Maths_Matrices.Tests.Tests12_SubMatrices.TestGetSubMatricesStatic&lt;/TestId&gt;&#xD;
+    &lt;TestId&gt;NUnit3x::901372C0-0399-4C17-8B52-AF0DE546430A::.NETFramework,Version=v4.7.2::Maths_Matrices.Tests.Tests13_Determinants.TestDeterminantMatrix2x2&lt;/TestId&gt;&#xD;
+    &lt;TestId&gt;NUnit3x::901372C0-0399-4C17-8B52-AF0DE546430A::.NETFramework,Version=v4.7.2::Maths_Matrices.Tests.Tests13_Determinants.TestDeterminantMatrix3x3&lt;/TestId&gt;&#xD;
+    &lt;TestId&gt;NUnit3x::901372C0-0399-4C17-8B52-AF0DE546430A::.NETFramework,Version=v4.7.2::Maths_Matrices.Tests.Tests13_Determinants.TestDeterminantIdentityMatrices&lt;/TestId&gt;&#xD;
+    &lt;TestId&gt;NUnit3x::901372C0-0399-4C17-8B52-AF0DE546430A::.NETFramework,Version=v4.7.2::Maths_Matrices.Tests.Tests07_TransposeMatrices.TestTransposeMatrixInstance&lt;/TestId&gt;&#xD;
+    &lt;TestId&gt;NUnit3x::901372C0-0399-4C17-8B52-AF0DE546430A::.NETFramework,Version=v4.7.2::Maths_Matrices.Tests.Tests14_AdjugateMatrices.TestCalculateAdjugateMatrixInstance&lt;/TestId&gt;&#xD;
+  &lt;/TestAncestor&gt;&#xD;
+&lt;/SessionState&gt;</s:String>
+	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=6a1f11f3_002D8261_002D4f89_002Dba7a_002D31797e6c85c3/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" Name="TestCalculateAdjugateMatrixInstance" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;&#xD;
+  &lt;TestAncestor&gt;&#xD;
+    &lt;TestId&gt;NUnit3x::901372C0-0399-4C17-8B52-AF0DE546430A::.NETFramework,Version=v4.7.2::Maths_Matrices.Tests.Tests14_AdjugateMatrices.TestCalculateAdjugateMatrixInstance&lt;/TestId&gt;&#xD;
+  &lt;/TestAncestor&gt;&#xD;
+&lt;/SessionState&gt;</s:String>
+	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=ff55e61e_002D704b_002D41c4_002D97c4_002D31aafa833858/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" IsActive="True" Name="TestCalculateAdjugateMatrixInstance #2" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;&#xD;
+  &lt;TestAncestor&gt;&#xD;
+    &lt;TestId&gt;NUnit3x::901372C0-0399-4C17-8B52-AF0DE546430A::.NETFramework,Version=v4.7.2::Maths_Matrices.Tests.Tests14_AdjugateMatrices.TestCalculateAdjugateMatrixInstance&lt;/TestId&gt;&#xD;
+    &lt;TestId&gt;NUnit3x::901372C0-0399-4C17-8B52-AF0DE546430A::.NETFramework,Version=v4.7.2::Maths_Matrices.Tests.Tests14_AdjugateMatrices.TestCalculateAdjugateMatrixStatic&lt;/TestId&gt;&#xD;
+  &lt;/TestAncestor&gt;&#xD;
+&lt;/SessionState&gt;</s:String></wpf:ResourceDictionary>

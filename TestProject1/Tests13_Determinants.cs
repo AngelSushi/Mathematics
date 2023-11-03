@@ -36,6 +36,7 @@ namespace Maths_Matrices.Tests
             GlobalSettings.DefaultFloatingPointTolerance = 0.001d;
             Assert.AreEqual(0f, determinant);
             GlobalSettings.DefaultFloatingPointTolerance = 0.0d;
+            
         }
         
         [Test]
@@ -47,6 +48,7 @@ namespace Maths_Matrices.Tests
             GlobalSettings.DefaultFloatingPointTolerance = 0.001d;
             Assert.AreEqual(1f, determinantIdentity2);
             GlobalSettings.DefaultFloatingPointTolerance = 0.0d;
+            
             
             //Identity 3
             MatrixFloat identity3 = MatrixFloat.Identity(2);
@@ -61,6 +63,7 @@ namespace Maths_Matrices.Tests
             GlobalSettings.DefaultFloatingPointTolerance = 0.001d;
             Assert.AreEqual(1f, determinantIdentity10);
             GlobalSettings.DefaultFloatingPointTolerance = 0.0d;
+            
         }
     }
 }

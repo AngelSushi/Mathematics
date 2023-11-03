@@ -56,6 +56,8 @@
         <Compile Include="Tests10_RowReduction.cs" />
         <Compile Include="Tests11_InvertMatricesUsingRowReduction.cs" />
         <Compile Include="Tests12_SubMatrices.cs" />
+        <Compile Include="Tests13_Determinants.cs" />
+        <Compile Include="Tests14_AdjugateMatrices.cs" />
     </ItemGroup>
     <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
     <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

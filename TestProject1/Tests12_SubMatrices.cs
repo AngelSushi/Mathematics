@@ -117,5 +117,6 @@ namespace Maths_Matrices.Tests
                 { 7f, 8f },
             }, subMatrix_0_2.ToArray2D());
         }
+        
     }
 }

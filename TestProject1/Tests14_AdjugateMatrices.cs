@@ -12,6 +12,11 @@ namespace Maths_Matrices.Tests
             {
                 { 1f, 2f },
                 { 3f, 4f }
+               
+            /* { 1f, 2f,3f },
+              { 0f,1f,4f },
+              { 5f, 6f, 0f }
+            */
             });
 
             MatrixFloat adjM = m.Adjugate();
@@ -20,8 +25,15 @@ namespace Maths_Matrices.Tests
             {
                 { 4f, -3f },
                 { -2f, 1f },
+                
+                /*
+                { -24f, 18f,5f },
+                { 20f,-15f,-4f },
+                { -5f, 4f, 1f}
+                */
             }, adjM.ToArray2D());
             GlobalSettings.DefaultFloatingPointTolerance = 0.0d;
+            
         }
 
         [Test]
@@ -43,7 +55,7 @@ namespace Maths_Matrices.Tests
                 { 20f, -15f, -4f },
                 { -5f, 4f, 1f },
             }, adjM.ToArray2D());
-            GlobalSettings.DefaultFloatingPointTolerance = 0.0d;
+            GlobalSettings.DefaultFloatingPointTolerance = 0.0d*/88
         }
     }
 }

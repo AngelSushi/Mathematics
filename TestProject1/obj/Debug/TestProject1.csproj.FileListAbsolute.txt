@@ -15,3 +15,11 @@ E:\travail\Cours\Maths\A4\Mathematics\TestProject1\obj\Debug\TestProject1.csproj
 E:\travail\Cours\Maths\A4\Mathematics\TestProject1\obj\Debug\TestProject1.csproj.CopyComplete
 E:\travail\Cours\Maths\A4\Mathematics\TestProject1\obj\Debug\TestProject1.dll
 E:\travail\Cours\Maths\A4\Mathematics\TestProject1\obj\Debug\TestProject1.pdb
+D:\IIM\A4_2023_2024\Mathematics\Mathematics\TestProject1\bin\Debug\TestProject1.dll
+D:\IIM\A4_2023_2024\Mathematics\Mathematics\TestProject1\bin\Debug\TestProject1.pdb
+D:\IIM\A4_2023_2024\Mathematics\Mathematics\TestProject1\bin\Debug\nunit.framework.dll
+D:\IIM\A4_2023_2024\Mathematics\Mathematics\TestProject1\bin\Debug\nunit.framework.xml
+D:\IIM\A4_2023_2024\Mathematics\Mathematics\TestProject1\obj\Debug\TestProject1.csprojAssemblyReference.cache
+D:\IIM\A4_2023_2024\Mathematics\Mathematics\TestProject1\obj\Debug\TestProject1.csproj.CopyComplete
+D:\IIM\A4_2023_2024\Mathematics\Mathematics\TestProject1\obj\Debug\TestProject1.dll
+D:\IIM\A4_2023_2024\Mathematics\Mathematics\TestProject1\obj\Debug\TestProject1.pdb

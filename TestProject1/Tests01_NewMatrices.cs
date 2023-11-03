@@ -126,53 +126,6 @@ namespace Maths_Matrices.Tests
             return true;
         }
 
-
-        private bool IsIdentityDirty()
-        {
-            if (Lines != Columns)
-            {
-                return false;
-            }
-
-            int[] identitiesIndex = new int[Matrix.GetLength(0)];
-            int indexEmpty = 0;
-
-            for (int i = 0; i < Matrix.GetLength(0); i++)
-            {
-                for (int j = 0; j < Matrix.GetLength(1); j++)
-                {
-                    if (Matrix[i, j] == 1)
-                    {
-                        if (indexEmpty >= identitiesIndex.Length)
-                        {
-                            return false;
-                        }
-
-                        identitiesIndex[indexEmpty] = j;
-                        indexEmpty++;
-                    }
-                    else if (Matrix[i, j] != 0)
-                    {
-                        return false;
-                    }
-                }
-            }
-
-            for (int i = 0; i < identitiesIndex.Length; i++)
-            {
-                if (i > 0)
-                {
-                    if (identitiesIndex[i] - identitiesIndex[i - 1] != 1)
-                    {
-                        return false;
-                    }
-                }
-            }
-
-            return true;
-        }
-
-
         public void Multiply(int factor)
         {
             for (int i = 0; i < Matrix.GetLength(0); i++)
@@ -299,14 +252,34 @@ namespace Maths_Matrices.Tests
 
         public MatrixInt Transpose()
         {
-            throw new NotImplementedException();
+            MatrixInt transposeMatrix = new MatrixInt(Columns,Lines);
+
+            for (int i = 0; i < Lines; i++)
+            {
+                for (int j = 0; j < Columns; j++)
+                {
+                    transposeMatrix[j, i] = Matrix[i, j];
+                }
+            }
+
+            return transposeMatrix;
         }
 
-        /*  public static MatrixInt Transpose(MatrixInt a)
+          public static MatrixInt Transpose(MatrixInt matrixRef)
           {
-              return new MatrixInt();
+              MatrixInt transposeMatrix = new MatrixInt(matrixRef.Columns,matrixRef.Lines);
+
+              for (int i = 0; i < matrixRef.Lines; i++)
+              {
+                  for (int j = 0; j < matrixRef.Columns; j++)
+                  {
+                      transposeMatrix[j, i] = matrixRef.Matrix[i, j];
+                  }
+              }
+
+              return transposeMatrix;
           }
-          */
+          
         public static MatrixInt GenerateAugmentedMatrix(MatrixInt mTransfo, MatrixInt mCol)
         {
             MatrixInt augmentedMatrix = new MatrixInt(mTransfo.Lines, mTransfo.Columns + 1);
@@ -604,14 +577,35 @@ namespace Maths_Matrices.Tests
 
         public MatrixFloat Transpose()
         {
-            throw new NotImplementedException();
+            MatrixFloat transposeMatrix = new MatrixFloat(Columns,Lines);
+
+            for (int i = 0; i < Lines; i++)
+            {
+                for (int j = 0; j < Columns; j++)
+                {
+                    transposeMatrix[j, i] = Matrix[i, j];
+                }
+            }
+
+            return transposeMatrix;
         }
 
-        /*  public static MatrixInt Transpose(MatrixInt a)
-          {
-              return new MatrixInt();
-          }
-          */
+        public static MatrixFloat Transpose(MatrixFloat matrixRef)
+        {
+            MatrixFloat transposeMatrix = new MatrixFloat(matrixRef.Columns,matrixRef.Lines);
+
+            for (int i = 0; i < matrixRef.Lines; i++)
+            {
+                for (int j = 0; j < matrixRef.Columns; j++)
+                {
+                    transposeMatrix[j, i] = matrixRef.Matrix[i, j];
+                }
+            }
+
+            return transposeMatrix;
+        }
+        
+        
         public static MatrixFloat GenerateAugmentedMatrix(MatrixFloat mTransfo, MatrixFloat mCol)
         {
             MatrixFloat augmentedMatrix = new MatrixFloat(mTransfo.Lines, mTransfo.Columns + mCol.Columns);
@@ -687,6 +681,199 @@ namespace Maths_Matrices.Tests
             }
             
             return augmentedMatrix;
+        }
+
+        public MatrixFloat SubMatrix(int line, int column)
+        {
+            MatrixFloat subMatrix = new MatrixFloat(Lines - 1, Columns - 1);
+
+
+            int subLine = 0;
+            
+            for (int i = 0; i < Lines; i++)
+            {
+                int subColumn = 0;
+
+                if (i == line)
+                {
+                    continue;
+                }
+                
+                for (int j = 0; j < Columns; j++)
+                {
+                    if (j != column && i != line)
+                    {
+                        subMatrix[subLine, subColumn] = Matrix[i, j];
+                        subColumn++;
+                    }
+                }
+
+                subLine++;
+            }
+
+            return subMatrix;
+        }
+
+        public static MatrixFloat SubMatrix(MatrixFloat matrixRef, int line, int column)
+        {
+            MatrixFloat subMatrix = new MatrixFloat(matrixRef.Lines - 1, matrixRef.Columns - 1);
+
+
+            int subLine = 0;
+            
+            for (int i = 0; i < matrixRef.Lines; i++)
+            {
+                int subColumn = 0;
+
+                if (i == line)
+                {
+                    continue;
+                }
+                
+                for (int j = 0; j < matrixRef.Columns; j++)
+                {
+                    if (j != column && i != line)
+                    {
+                        subMatrix[subLine, subColumn] = matrixRef.Matrix[i, j];
+                        subColumn++;
+                    }
+                }
+
+                subLine++;
+            }
+
+            return subMatrix;
+        }
+
+        public static float Determinant(MatrixFloat matrixRef)
+        {
+            if (matrixRef.Lines == 2 && matrixRef.Columns == 2)
+            {
+                return CalculateDeterminant(matrixRef, matrixRef,0);
+            }
+            
+            float determinant = 0f;
+            
+            for (int i = 0; i < matrixRef.Columns; i++)
+            {
+                MatrixFloat sub = matrixRef.SubMatrix(0,i);
+
+                determinant += CalculateDeterminant(sub,matrixRef, i);
+            }
+            
+            
+            return determinant;
+        }
+
+        private static float CalculateDeterminant(MatrixFloat sub,MatrixFloat matrixRef,int i)
+        {
+            float result = CalculateSubMatrix(sub);
+            float subDeterminant = matrixRef[0, i] * result;
+
+            if (i % 2 != 0)
+            {
+                subDeterminant *= -1;
+            }
+
+            return subDeterminant;
+        }
+
+        public void ApplySign()
+        {
+            for (int i = 0; i < Lines; i++)
+            {
+                for (int j = 0; j < Columns; j++)
+                {
+
+                    if ((i + j) % 2 != 0)
+                    {
+                        matrix[i, j] *= -1;
+                    }
+                }
+            }
+            
+            
+        }
+        
+        private static float CalculateSubMatrix(MatrixFloat subRef)
+        {
+            if (subRef.Lines == 1 && subRef.Columns == 1)
+            {
+                return subRef[0, 0];
+            }
+
+            return (subRef[0,0] * subRef[1,1]) - (subRef[0,1] * subRef[1,0]);
+        }
+        
+
+        public MatrixFloat Adjugate()
+        {
+            float determinant = Determinant(this);
+
+            if (determinant == 0)
+            {
+                return null;
+            }
+
+            MatrixFloat transposeMatrix = Transpose();
+
+            MatrixFloat cofactors = new MatrixFloat(transposeMatrix);
+
+            for (int i = 0; i < transposeMatrix.Lines; i++)
+            {
+                for (int j = 0; j < transposeMatrix.Columns; j++)
+                {
+                    MatrixFloat subRef = SubMatrix(transposeMatrix, i, j);
+
+                    float subDeterminant = CalculateSubMatrix(subRef);
+
+                    cofactors[i, j] = subDeterminant;
+                }
+            }
+            
+            cofactors.ApplySign();
+
+          /*  for (int i = 0; i < cofactors.Lines; i++)
+            {
+                for (int j = 0; j < cofactors.Columns; j++)
+                {
+                    cofactors[i, j] /= determinant;
+                }
+            }
+            
+            */
+
+          
+            return cofactors.Transpose();
+        }
+        
+        public static MatrixFloat Adjugate(MatrixFloat matrixRef)
+        {
+            float determinant = Determinant(matrixRef);
+
+            if (determinant == 0)
+            {
+                return null;
+            }
+
+            MatrixFloat transposeMatrix = matrixRef.Transpose();
+
+            MatrixFloat cofactors = new MatrixFloat(transposeMatrix);
+
+            for (int i = 0; i < transposeMatrix.Lines; i++)
+            {
+                for (int j = 0; j < transposeMatrix.Columns; j++)
+                {
+                    MatrixFloat subRef = SubMatrix(transposeMatrix, i, j);
+
+                    float subDeterminant = CalculateSubMatrix(subRef);
+
+                    cofactors[i, j] = subDeterminant;
+                }
+            }
+            
+            cofactors.ApplySign();
+            return cofactors.Transpose();
         }
     }
 

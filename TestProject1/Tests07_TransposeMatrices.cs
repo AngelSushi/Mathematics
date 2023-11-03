@@ -8,7 +8,7 @@ namespace Maths_Matrices.Tests
         [Test]
         public void TestTransposeMatrixInstance()
         {
-         /*   MatrixInt m1 = new MatrixInt(new[,]
+            MatrixInt m1 = new MatrixInt(new[,]
             {
                 { 1, 2, 3 },
                 { 4, 5, 6 }
@@ -22,7 +22,7 @@ namespace Maths_Matrices.Tests
                 { 2, 5 },
                 { 3, 6 }
             }, m1t.ToArray2D());
-            */
+            
         }
         
         [Test]
