@@ -808,13 +808,6 @@ namespace Maths_Matrices.Tests
 
         public MatrixFloat Adjugate()
         {
-            float determinant = Determinant(this);
-
-            if (determinant == 0)
-            {
-                return null;
-            }
-
             MatrixFloat transposeMatrix = Transpose();
 
             MatrixFloat cofactors = new MatrixFloat(transposeMatrix);
@@ -849,13 +842,6 @@ namespace Maths_Matrices.Tests
         
         public static MatrixFloat Adjugate(MatrixFloat matrixRef)
         {
-            float determinant = Determinant(matrixRef);
-
-            if (determinant == 0)
-            {
-                return null;
-            }
-
             MatrixFloat transposeMatrix = matrixRef.Transpose();
 
             MatrixFloat cofactors = new MatrixFloat(transposeMatrix);
@@ -874,6 +860,50 @@ namespace Maths_Matrices.Tests
             
             cofactors.ApplySign();
             return cofactors.Transpose();
+        }
+
+        public MatrixFloat InvertByDeterminant()
+        {
+            float determinant = Determinant(this);
+
+            if (determinant == 0)
+            {
+                throw new MatrixInvertException();
+            }
+            
+            MatrixFloat adjugateMatrix = Adjugate();
+            
+            for (int i = 0; i < adjugateMatrix.Lines; i++)
+            {
+                for (int j = 0; j < adjugateMatrix.Columns; j++)
+                {
+                    adjugateMatrix[i, j] /= determinant;
+                }
+            }
+
+            return adjugateMatrix.Transpose();
+        }
+        
+        public static MatrixFloat InvertByDeterminant(MatrixFloat matrixRef)
+        {
+            float determinant = Determinant(matrixRef);
+
+            if (determinant == 0)
+            {
+                throw new MatrixInvertException();
+            }
+            
+            MatrixFloat adjugateMatrix = matrixRef.Adjugate();
+            
+            for (int i = 0; i < adjugateMatrix.Lines; i++)
+            {
+                for (int j = 0; j < adjugateMatrix.Columns; j++)
+                {
+                    adjugateMatrix[i, j] /= determinant;
+                }
+            }
+
+            return adjugateMatrix.Transpose();
         }
     }
 

@@ -58,6 +58,9 @@
         <Compile Include="Tests12_SubMatrices.cs" />
         <Compile Include="Tests13_Determinants.cs" />
         <Compile Include="Tests14_AdjugateMatrices.cs" />
+        <Compile Include="Tests15_InvertMatricesUsingDeterminant.cs" />
+        <Compile Include="Tests16_TransformationMatrices.cs" />
+        <Compile Include="Vector4.cs" />
     </ItemGroup>
     <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
     <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

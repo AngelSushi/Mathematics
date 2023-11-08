@@ -10,5 +10,10 @@
     &lt;TestId&gt;NUnit3x::901372C0-0399-4C17-8B52-AF0DE546430A::.NETFramework,Version=v4.7.2::Maths_Matrices.Tests.Tests10_RowReduction&lt;/TestId&gt;&#xD;
     &lt;TestId&gt;NUnit3x::901372C0-0399-4C17-8B52-AF0DE546430A::.NETFramework,Version=v4.7.2::Maths_Matrices.Tests.Tests11_InvertMatricesUsingRowReduction.TestInvertMatrixInstance&lt;/TestId&gt;&#xD;
     &lt;TestId&gt;NUnit3x::901372C0-0399-4C17-8B52-AF0DE546430A::.NETFramework,Version=v4.7.2::Maths_Matrices.Tests.Tests11_InvertMatricesUsingRowReduction.TestInvertImpossibleMatrix&lt;/TestId&gt;&#xD;
+    &lt;TestId&gt;NUnit3x::901372C0-0399-4C17-8B52-AF0DE546430A::.NETFramework,Version=v4.7.2::Maths_Matrices.Tests.Tests12_SubMatrices.TestGetSubMatricesInstance&lt;/TestId&gt;&#xD;
+    &lt;TestId&gt;NUnit3x::901372C0-0399-4C17-8B52-AF0DE546430A::.NETFramework,Version=v4.7.2::Maths_Matrices.Tests.Tests14_AdjugateMatrices.TestCalculateAdjugateMatrixStatic&lt;/TestId&gt;&#xD;
+    &lt;TestId&gt;NUnit3x::901372C0-0399-4C17-8B52-AF0DE546430A::.NETFramework,Version=v4.7.2::Maths_Matrices.Tests.Tests15_InvertMatricesUsingDeterminant.TestInvertMatrixInstance&lt;/TestId&gt;&#xD;
+    &lt;TestId&gt;NUnit3x::901372C0-0399-4C17-8B52-AF0DE546430A::.NETFramework,Version=v4.7.2::Maths_Matrices.Tests.Tests15_InvertMatricesUsingDeterminant.TestInvertMatrixStatic&lt;/TestId&gt;&#xD;
+    &lt;TestId&gt;NUnit3x::901372C0-0399-4C17-8B52-AF0DE546430A::.NETFramework,Version=v4.7.2::Maths_Matrices.Tests.Tests15_InvertMatricesUsingDeterminant.TestInvertImpossibleMatrix&lt;/TestId&gt;&#xD;
   &lt;/TestAncestor&gt;&#xD;
 &lt;/SessionState&gt;</s:String></wpf:ResourceDictionary>

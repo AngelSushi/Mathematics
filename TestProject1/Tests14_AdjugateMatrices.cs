@@ -55,7 +55,7 @@ namespace Maths_Matrices.Tests
                 { 20f, -15f, -4f },
                 { -5f, 4f, 1f },
             }, adjM.ToArray2D());
-            GlobalSettings.DefaultFloatingPointTolerance = 0.0d*/88
+            GlobalSettings.DefaultFloatingPointTolerance = 0.088d;
         }
     }
 }
