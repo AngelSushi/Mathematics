@@ -8,7 +8,7 @@ namespace Maths_Matrices.Tests
         [Test]
         public void TestApplyRowReduction_CourseExample()
         {
-         /*   MatrixFloat m1 = new MatrixFloat(new[,]
+            MatrixFloat m1 = new MatrixFloat(new[,]
             {
                 { 3f, 2f, -3f }, 
                 { 4f, -3f, 6f },
@@ -22,7 +22,8 @@ namespace Maths_Matrices.Tests
                 { -5f }
             });
 
-            (m1, m2) = MatrixRowReductionAlgorithm.Apply(m1, m2); // () => tuple 
+            bool reversible = false;
+            (m1, m2,reversible) = MatrixRowReductionAlgorithm.Apply(m1, m2); // () => tuple 
             GlobalSettings.DefaultFloatingPointTolerance = 0.001f;
             Assert.AreEqual(new[,]
             {
@@ -38,7 +39,7 @@ namespace Maths_Matrices.Tests
                 { 3f }
             }, m2.ToArray2D());
             GlobalSettings.DefaultFloatingPointTolerance = 0.0d;
-            */
+            
         }
 
         [Test]

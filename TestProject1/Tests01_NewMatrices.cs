@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Diagnostics;
 using NUnit.Framework;
+using TestProject1;
 
 namespace Maths_Matrices.Tests
 {
@@ -499,6 +500,25 @@ namespace Maths_Matrices.Tests
             return newMatrix;
         }
 
+        public static MatrixFloat Multiply(MatrixFloat matrixRef, MatrixFloat factor)
+        {
+            MatrixFloat matrixMultiply = new MatrixFloat(matrixRef.Lines, factor.Columns);
+
+            for (int i = 0; i < matrixRef.Columns; i++)
+            {
+                for (int j = 0; j < factor.Columns; j++)
+                {
+                    for (int k = 0; k < matrixRef.Columns; k++)
+                    {
+                        matrixMultiply[i,j] += matrixRef[i, k] * factor[k,j];
+                    }
+                }
+            }
+            
+            return matrixMultiply;
+        }
+        
+
         public void Add(MatrixFloat a)
         {
             if (a.Columns != Columns || a.Lines != Lines)
@@ -654,17 +674,17 @@ namespace Maths_Matrices.Tests
         public MatrixFloat InvertByRowReduction()
         {
             MatrixFloat identity = Identity(Columns);
-            MatrixFloat augmentedMatrix = null;
+            MatrixFloat result = null;
             bool isReversible = false;
             
-            (identity,augmentedMatrix,isReversible) = MatrixRowReductionAlgorithm.Apply(this, identity);
+            (_,result,isReversible) = MatrixRowReductionAlgorithm.Apply(this, identity);
 
             if (!isReversible)
             {
                 throw new MatrixInvertException();
             }
             
-            return augmentedMatrix;
+            return result;
         }
         
         public static MatrixFloat InvertByRowReduction(MatrixFloat matrix)
@@ -801,6 +821,11 @@ namespace Maths_Matrices.Tests
             {
                 return subRef[0, 0];
             }
+            
+            if (subRef.Lines > 2 && subRef.Columns > 2)
+            {
+                throw new Tests14_AdjugateMatrices.SubMatrixException();
+            }
 
             return (subRef[0,0] * subRef[1,1]) - (subRef[0,1] * subRef[1,0]);
         }
@@ -817,6 +842,8 @@ namespace Maths_Matrices.Tests
                 for (int j = 0; j < transposeMatrix.Columns; j++)
                 {
                     MatrixFloat subRef = SubMatrix(transposeMatrix, i, j);
+                    
+                    // Faut recréer a chaque fois des matrices de 2x2
 
                     float subDeterminant = CalculateSubMatrix(subRef);
 
@@ -825,19 +852,8 @@ namespace Maths_Matrices.Tests
             }
             
             cofactors.ApplySign();
-
-          /*  for (int i = 0; i < cofactors.Lines; i++)
-            {
-                for (int j = 0; j < cofactors.Columns; j++)
-                {
-                    cofactors[i, j] /= determinant;
-                }
-            }
             
-            */
-
-          
-            return cofactors.Transpose();
+            return cofactors;
         }
         
         public static MatrixFloat Adjugate(MatrixFloat matrixRef)
@@ -859,7 +875,7 @@ namespace Maths_Matrices.Tests
             }
             
             cofactors.ApplySign();
-            return cofactors.Transpose();
+            return cofactors;
         }
 
         public MatrixFloat InvertByDeterminant()
@@ -905,6 +921,16 @@ namespace Maths_Matrices.Tests
 
             return adjugateMatrix.Transpose();
         }
+
+        public Vector4 ToVector4()
+        {
+            if (Columns != 1)
+            {
+                return null;
+            }
+
+            return new Vector4(matrix[0,0],matrix[1,0],matrix[2,0],matrix[3,0]);
+        }
     }
 
     public class MatrixRowReductionAlgorithm
@@ -921,12 +947,13 @@ namespace Maths_Matrices.Tests
                 {
                     (int lineIndex, float k) = FindHigherK(reducMatrix, i, j);
 
-                    if (AllIsZero(reducMatrix, i))
+                    if (AllIsZero(reducMatrix, j))
                     {
+                        isReversible = false;
                         continue;
                     }
 
-                    isReversible = false;
+                    isReversible = true;
                     if (lineIndex != i)
                     {
                         MatrixElementaryOperations.SwapLines(reducMatrix, lineIndex, i);
@@ -952,12 +979,12 @@ namespace Maths_Matrices.Tests
                 }
             }
             
-            return (reducMatrix.Split(2).a,reducMatrix.Split(2).b,isReversible);
+            return (reducMatrix.Split(m1.Columns).a,reducMatrix.Split(reducMatrix.Columns - (m1.Columns +1)).b,isReversible);
         }
 
         private static (int, float) FindHigherK(MatrixFloat matrixRef, int line, int column)
         {
-            float highestValue = matrixRef[line, column];
+            float highestValue = float.MinValue;
             int lineIndex = 0;
 
             for (int k = 0; k < matrixRef.Lines; k++)
@@ -975,11 +1002,11 @@ namespace Maths_Matrices.Tests
             return (lineIndex, highestValue);
         }
 
-        private static bool AllIsZero(MatrixFloat matrixRef, int line)
+        private static bool AllIsZero(MatrixFloat matrixRef, int column)
         {
-            for (int i = 0; i < matrixRef.Columns; i++)
+            for (int i = 0; i < matrixRef.Lines; i++)
             {
-                if (matrixRef[line, i] != 0)
+                if (matrixRef[i, column] != 0)
                 {
                     return false;
                 }

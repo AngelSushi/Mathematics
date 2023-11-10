@@ -1,4 +1,5 @@
-﻿using NUnit.Framework;
+﻿using System;
+using NUnit.Framework;
 
 namespace Maths_Matrices.Tests
 {
@@ -12,28 +13,16 @@ namespace Maths_Matrices.Tests
             {
                 { 1f, 2f },
                 { 3f, 4f }
-               
-            /* { 1f, 2f,3f },
-              { 0f,1f,4f },
-              { 5f, 6f, 0f }
-            */
             });
 
             MatrixFloat adjM = m.Adjugate();
             GlobalSettings.DefaultFloatingPointTolerance = 0.001d;
             Assert.AreEqual(new[,]
             {
-                { 4f, -3f },
-                { -2f, 1f },
-                
-                /*
-                { -24f, 18f,5f },
-                { 20f,-15f,-4f },
-                { -5f, 4f, 1f}
-                */
+                { 4f, -2f },
+                { -3f, 1f },
             }, adjM.ToArray2D());
             GlobalSettings.DefaultFloatingPointTolerance = 0.0d;
-            
         }
 
         [Test]
@@ -51,11 +40,39 @@ namespace Maths_Matrices.Tests
             GlobalSettings.DefaultFloatingPointTolerance = 0.001d;
             Assert.AreEqual(new[,]
             {
-                { -24f, 18f, 5f },
-                { 20f, -15f, -4f },
-                { -5f, 4f, 1f },
+                { -24f, 20f, -5f },
+                { 18f, -15f, 4f },
+                { 5f, -4f, 1f },
             }, adjM.ToArray2D());
-            GlobalSettings.DefaultFloatingPointTolerance = 0.088d;
+            GlobalSettings.DefaultFloatingPointTolerance = 0.0d;
+        }
+
+        [Test]
+        public void TestCalculateAdjugateMatrixIdentity4x4()
+        {
+            MatrixFloat m = new MatrixFloat(new[,]
+            {
+                { 1f, 0f, 0f, 0f },
+                { 0f, 1f, 0f, 0f },
+                { 0f, 0f, 1f, 0f },
+                { 0f, 0f, 0f, 1f },
+            });
+
+            MatrixFloat adjM = m.Adjugate();
+            GlobalSettings.DefaultFloatingPointTolerance = 0.001d;
+            Assert.AreEqual(new[,]
+            {
+                { 1f, 0f, 0f, 0f },
+                { 0f, 1f, 0f, 0f },
+                { 0f, 0f, 1f, 0f },
+                { 0f, 0f, 0f, 1f },
+            }, adjM.ToArray2D());
+            GlobalSettings.DefaultFloatingPointTolerance = 0.0d;
+        }
+
+        public class SubMatrixException : Exception
+        {
+            
         }
     }
 }
